@@ -8,12 +8,14 @@ import { useEffect, useState } from "react";
 import fetchSuggestion from "@/lib/fetchSuggestion";
 import { useAuth, useUser, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import LOGO from "@/app/logo.png"
 
 function Header() {
   
   // const { userId, getToken, isLoaded, isSignedIn } = useAuth();
   const { isSignedIn, user, isLoaded } = useUser();
   // console.log(user?.imageUrl);
+// console.log(user);
 
   const handleOptions=() => {
     return(
@@ -51,7 +53,8 @@ function Header() {
         <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-br from-green-400 to-[#0055D1] rounded-md filter blur-3xl opacity-50 -z-50" />
       {/* <Link href="/"> */}
         <Image
-          src="https://links.papareact.com/c2cdd5"
+          // src="https://links.papareact.com/c2cdd5"
+          src={LOGO}
           alt="Trello Logo"
           width={300}
           height={100}
@@ -76,8 +79,8 @@ function Header() {
           {/* avatar */}
           {isSignedIn && isLoaded ? 
             <UserButton appearance={{elements:{avatarBox: "w-14 h-14"}}} afterSignOutUrl="/sign-in" userProfileMode="modal" />
-            : 
-            <Avatar name={`${user?.fullName}`} src={`${user.imageUrl}`} size="50" round={true} />
+            : "Profile Button" 
+            // <Avatar name={user?.fullName} size="50" round={true} />
             // <Avatar name={`${user?.fullName}`} src={`${user?.imageUrl}`} size="50" round={true} />
           }
         </div>
